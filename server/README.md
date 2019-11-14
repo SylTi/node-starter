@@ -1,0 +1,1 @@
+# Starter Kit: Docker, Node, Functionnal Typescript
