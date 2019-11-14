@@ -7,7 +7,7 @@ WORKDIR /app
 # do apt-get here if needed
 USER node
 COPY --chown=node:node package.json package-lock*.json
-run npm ci && npm cache clean --force
+RUN npm ci && npm cache clean --force
 
 FROM base as development
 ENV NODE_ENV=development
@@ -24,7 +24,7 @@ CMD ["npm", "run", "test"]
 
 FROM test AS audit
 USER root
-run npm audit --audit-level critical
+RUN npm audit --audit-level critical
 ARG MICROSCANNER_TOKEN
 ADD https://get.aquasec.com/microscanner /
 RUN chmod +x /microscanner
