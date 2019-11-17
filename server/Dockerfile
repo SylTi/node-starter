@@ -5,19 +5,20 @@ EXPOSE 3000
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 # do apt-get here if needed
+# RUN apt-get update && apt-get install -y --no-install-recommends PACKAGE && rm -rf /var/lib/apt/lists/*
 USER node
-COPY --chown=node:node package.json package-lock*.json
+COPY --chown=node:node package.json package-lock*.json ./
 RUN npm ci && npm cache clean --force
 
-FROM base as development
+FROM base AS development
 ENV NODE_ENV=development
 RUN npm install --only=development
 CMD ["npm", "run", "start:dev"]
 
-FROM base as source
+FROM base AS source
 COPY --chown=node:node . .
 
-FROM source as test
+FROM source AS test
 ENV NODE_ENV=development
 COPY --from=development /app/node_modules /app/node_modules
 CMD ["npm", "run", "test"]

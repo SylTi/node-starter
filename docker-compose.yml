@@ -12,11 +12,12 @@ services:
     #image: 
     # build: ./server
     build: 
-      dockerfile: ./server/Dockerfile
-      context: ./servers
-      target: dev
-      # args:
-      #   MICROSCANNER_TOKEN: 
+      dockerfile: Dockerfile
+      context: ./server
+      # target: development
+      target: production
+      args:
+        MICROSCANNER_TOKEN: YOUR_ACCESS_TOKEN
     volumes:
       - "./server:/app"
     ports:

@@ -12,10 +12,10 @@
     "prebuild": "npm run lint",
     "build": "tsc",
     "lint": "tslint -c tslint.json -p tsconfig.json 'src/**/*.ts' --fix",
-    "docker:build:prod": "docker build myapp:prod --target production ."
+    "docker:build:prod": "docker build starterkit-prod:0.0.1 --target production ."
   },
   "keywords": [],
-  "author": "SylTi <sylti@protonmail.com>",
+  "author": "SylTi <sylti@unblockchain.tech>",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.2.5",
