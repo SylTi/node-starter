@@ -35,6 +35,19 @@ services:
       - --providers.docker
       - --api.insecure=true
       - --entrypoints.web.address=:80
+      - --certificatesResolvers.sample.acme.email=your-email@your-domain.org
+      - --certificatesResolvers.sample.acme.storage=acme.json
+      # comment next line for production servers
+      - --certificatesResolvers.sample.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesResolvers.sample.acme.keyType=RSA8192
+      - --certificatesResolvers.sample.acme.tlsChallenge=true
+      - --certificatesResolvers.sample.acme.httpChallenge=true
+      # used during the challenge
+      - --certificatesResolvers.sample.acme.httpChallenge.entryPoint=web
+      - --certificatesResolvers.sample.acme.dnsChallenge=true
+      - --certificatesResolvers.sample.acme.dnsChallenge.provider=digitalocean
+      - --certificatesResolvers.sample.acme.dnsChallenge.delayBeforeCheck=0
+      - --certificatesResolvers.sample.acme.dnsChallenge.resolvers=1.1.1.1:53,8.8.8.8:53
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
     ports:
