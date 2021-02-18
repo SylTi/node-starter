@@ -1,4 +1,4 @@
-FROM node:10.16-slim AS base
+FROM node:14.15-slim AS base
 ENV NODE_ENV=production
 ENV PATH=/app/node_modules/.bin/$PATH
 EXPOSE 3000
